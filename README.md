@@ -14,6 +14,7 @@
 
 <p align="center">
   <a href="https://pypi.org/project/mk-plan-master/"><img src="https://img.shields.io/pypi/v/mk-plan-master.svg?logo=pypi&logoColor=white&color=3775A9" alt="PyPI" /></a>
+  <a href="https://github.com/kao273183/mk-plan-master/actions/workflows/ci.yml"><img src="https://github.com/kao273183/mk-plan-master/actions/workflows/ci.yml/badge.svg" alt="CI" /></a>
   <img src="https://img.shields.io/badge/python-3.10%20%7C%203.11%20%7C%203.12%20%7C%203.13-3776AB.svg?logo=python&logoColor=white" alt="Python 3.10-3.13" />
   <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="License: MIT" /></a>
   <img src="https://img.shields.io/badge/MCP-compatible-7C3AED.svg" alt="MCP compatible" />
