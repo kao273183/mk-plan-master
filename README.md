@@ -28,21 +28,22 @@
 
 ## Why this exists
 
-The AI-driven dev pipeline today looks like this:
+With `mk-plan-master` shipped, the AI-driven dev pipeline now looks like this:
 
 ```
-???  →  Spec  →  Code  →  Test  →  Coverage  →  Coach
-(gap)   mk-spec  IDE     mk-qa    mk-spec      both
+Idea  →  Plan       →  Spec        →  Code     →  Test      →  Coverage    →  Coach
+         mk-plan       mk-spec        your IDE     mk-qa       mk-spec        both
 ```
 
-The `mk-*` family already shipped two MCPs covering the right half:
+Until v0.1 the upstream slot was a `???` — `mk-spec-master` could parse a spec, `mk-qa-master` could run tests, but **nobody had built the piece that turns a pile of 30–200 raw ideas (chat snippets, customer calls, URLs, gut hunches) into a prioritized, RICE-scored backlog and emits a spec draft that drops straight into `mk-spec-master.parse_spec(raw_text=...)`** — no manual reformatting, no copy-paste fragility.
 
+`mk-plan-master` is that piece. The `mk-*` family is now whole:
+
+- [`mk-plan-master`](https://github.com/kao273183/mk-plan-master) — ideas in, prioritized plans + spec drafts out (this repo)
 - [`mk-spec-master`](https://github.com/kao273183/mk-spec-master) — specs in, scenarios out, coverage matrix
 - [`mk-qa-master`](https://github.com/kao273183/mk-qa-master) — scenarios in, runnable tests out (pytest / Jest / Cypress / Go test / Maestro)
 
-`mk-plan-master` closes the **upstream** gap. The piece nobody has built MCP-native yet: turn a pile of 30–200 ideas (chat snippets, customer calls, URLs, gut hunches) into a prioritized, RICE-scored quarterly roadmap, and **emit a spec draft that drops straight into `mk-spec-master.parse_spec(raw_text=...)`** — no manual reformatting, no copy-paste fragility.
-
-It's the planning MCP that also **measures its own decision quality over time** — history snapshots, decision signatures (ghost initiatives / score whiplash / orphan OKRs), and tool-usage telemetry. The mk-spec-master v0.4 self-reinforcement layer, applied one step upstream.
+It's also the planning MCP that **measures its own decision quality over time** — history snapshots, decision signatures (ghost initiatives / score whiplash / orphan OKRs), and tool-usage telemetry. The mk-spec-master v0.4 self-reinforcement layer, applied one step upstream.
 
 ---
 

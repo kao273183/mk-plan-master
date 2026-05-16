@@ -28,19 +28,20 @@
 
 ## 為什麼會有這個
 
-目前 AI 開發流水線長這樣：
+`mk-plan-master` 上線後，AI 開發流水線完整長這樣：
 
 ```
-???  →  Spec  →  Code  →  Test  →  Coverage  →  Coach
-(空)    mk-spec  IDE     mk-qa    mk-spec      兩邊都管
+點子  →  計劃        →  規格         →  程式碼   →  測試      →  覆蓋率      →  教練
+         mk-plan        mk-spec         你的 IDE     mk-qa       mk-spec        兩邊都管
 ```
 
-`mk-*` 家族已經出了兩個負責下半段的 MCP：
+在 v0.1 上線前、上游那一格是 `???`——`mk-spec-master` 能解規格、`mk-qa-master` 能跑測試，但**沒人做那一塊：把 30–200 個來自客戶 call、業務聊天、Twitter、腦子裡的點子，變成依 RICE 排序、配好季度 capacity 的 backlog，再吐出 `mk-spec-master.parse_spec(raw_text=...)` 能直接吃的 spec 草稿**——零手抄、零 copy-paste 漏字風險。
 
+`mk-plan-master` 就是補這格的那塊。`mk-*` 家族至此**完整**：
+
+- [`mk-plan-master`](https://github.com/kao273183/mk-plan-master) — 點子進、排序好的計劃 + spec 草稿出（本 repo）
 - [`mk-spec-master`](https://github.com/kao273183/mk-spec-master) — 規格進、場景出、覆蓋矩陣
 - [`mk-qa-master`](https://github.com/kao273183/mk-qa-master) — 場景進、可跑測試出（pytest / Jest / Cypress / Go test / Maestro）
-
-`mk-plan-master` 補的是**上游**那一塊——沒人用 MCP 做的那一段：把 30–200 個來自客戶 call、業務聊天、Twitter、自己腦子裡的想法，變成依 RICE 排好序、配好季度 capacity 的 roadmap，然後**直接吐出 mk-spec-master.parse_spec 能吃的 spec 草稿**，零手抄、零 copy-paste 漏字風險。
 
 更狠的是，這個 MCP 還會**記錄自己的決策品質**：history 快照、決策簽章（ghost initiative / score whiplash / orphan OKR）、tool-usage telemetry。把 mk-spec-master v0.4 的自我強化模式，套到上游一段。
 
