@@ -327,6 +327,6 @@ MIT © 2026 Jack Kao — see [`LICENSE`](LICENSE).
 
 **Plain-English version:** personal use, commercial use, modification, redistribution — all allowed. The only requirement is that you keep the copyright and license notice in your copy. **No warranty**: if it breaks in production, you can't come after the author.
 
-Built by [Jack Kao](https://github.com/kao273183) @ 宸鈞數位. Part of the `mk-*` family: `mk-qa-master` + `mk-spec-master` + `mk-plan-master`.
+Built by [Jack Kao](https://github.com/kao273183) . Part of the `mk-*` family: `mk-qa-master` + `mk-spec-master` + `mk-plan-master`.
 
 If this saved you time, [a coffee](https://www.buymeacoffee.com/minikao) goes a long way.
