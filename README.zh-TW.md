@@ -97,6 +97,12 @@ MCP client config 加上：
 
 Claude Desktop、Claude Code、Cursor、Codex CLI、Gemini CLI 通通可以。
 
+Claude Desktop config 路徑：
+
+- **macOS**：`~/Library/Application Support/Claude/claude_desktop_config.json`
+- **Windows**：`%APPDATA%\Claude\claude_desktop_config.json`
+- **Linux**：`~/.config/Claude/claude_desktop_config.json`
+
 然後在 AI session 直接說：
 
 > 「用 mk-plan-master 把所有 triage 的 idea 都算 RICE、挑最高的那個跑 analyze_initiative，再生 spec 草稿丟 mk-spec-master。」

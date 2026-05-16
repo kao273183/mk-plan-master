@@ -97,6 +97,12 @@ Add to your MCP client config:
 
 Works in Claude Desktop, Claude Code, Cursor, Codex CLI, Gemini CLI — any MCP client.
 
+Claude Desktop config lives at:
+
+- **macOS**: `~/Library/Application Support/Claude/claude_desktop_config.json`
+- **Windows**: `%APPDATA%\Claude\claude_desktop_config.json`
+- **Linux**: `~/.config/Claude/claude_desktop_config.json`
+
 Then in your AI session:
 
 > "Use mk-plan-master to score every triage idea, pick the top one, run analyze_initiative on it, then generate a spec draft and hand it to mk-spec-master."
