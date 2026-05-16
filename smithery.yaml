@@ -1,0 +1,87 @@
+startCommand:
+  type: stdio
+  configSchema:
+    type: object
+    required:
+      - planSource
+      - planProjectRoot
+    properties:
+      planSource:
+        type: string
+        title: Plan source
+        description: >-
+          Which initiative backend to read from. markdown_local reads
+          `initiatives/*.md` from PLAN_PROJECT_ROOT; linear / jira / notion
+          query the respective APIs filtered to triage / backlog states.
+        enum:
+          - markdown_local
+          - linear
+          - jira
+          - notion
+        default: markdown_local
+      planProjectRoot:
+        type: string
+        title: Project root (absolute path)
+        description: >-
+          Absolute path where the decision index
+          (.mk-plan-master/index.json), history snapshots, and any local
+          initiative files live. Example: /Users/you/work/my-product
+      planProjectKey:
+        type: string
+        title: Source-specific key (optional / required per adapter)
+        description: >-
+          For linear: team key (optional). For jira: project key (optional,
+          scopes JQL). For notion: database id (REQUIRED). For
+          markdown_local: ignored.
+      linearApiKey:
+        type: string
+        title: Linear API key (required for linear)
+        description: >-
+          Personal API key from linear.app/settings/api. Required when
+          planSource=linear.
+      jiraBaseUrl:
+        type: string
+        title: JIRA Cloud base URL (required for jira)
+        description: >-
+          e.g. https://your-org.atlassian.net. Required when planSource=jira.
+      jiraEmail:
+        type: string
+        title: JIRA account email (required for jira)
+        description: >-
+          The Atlassian account email associated with the API token.
+          Required when planSource=jira.
+      jiraApiToken:
+        type: string
+        title: JIRA API token (required for jira)
+        description: >-
+          Atlassian API token from id.atlassian.com/manage-profile/security/api-tokens.
+          Required when planSource=jira.
+      notionToken:
+        type: string
+        title: Notion integration token (required for notion)
+        description: >-
+          Internal integration secret from notion.so/my-integrations.
+          Required when planSource=notion. The integration must be shared
+          with the target database.
+      planKnowledgeFile:
+        type: string
+        title: plan-knowledge.md override (optional)
+        description: >-
+          Override the location of plan-knowledge.md. Defaults to
+          $PLAN_PROJECT_ROOT/plan-knowledge.md.
+  commandFunction: |-
+    (config) => ({
+      command: "uvx",
+      args: ["mk-plan-master"],
+      env: {
+        PLAN_SOURCE: config.planSource,
+        PLAN_PROJECT_ROOT: config.planProjectRoot,
+        ...(config.planProjectKey ? { PLAN_PROJECT_KEY: config.planProjectKey } : {}),
+        ...(config.linearApiKey ? { LINEAR_API_KEY: config.linearApiKey } : {}),
+        ...(config.jiraBaseUrl ? { JIRA_BASE_URL: config.jiraBaseUrl } : {}),
+        ...(config.jiraEmail ? { JIRA_EMAIL: config.jiraEmail } : {}),
+        ...(config.jiraApiToken ? { JIRA_API_TOKEN: config.jiraApiToken } : {}),
+        ...(config.notionToken ? { NOTION_TOKEN: config.notionToken } : {}),
+        ...(config.planKnowledgeFile ? { PLAN_KNOWLEDGE_FILE: config.planKnowledgeFile } : {})
+      }
+    })
